@@ -1,12 +1,13 @@
 #include <iostream>
 #include <cmath>
 #include <string>
+#include <cstdlib>
 #include "vec3.h"
 #include "ray.h"
 
 
-const int W = 50;
-const int H = 50;
+int W = 50;
+int H = 50;
 
 
 bool sphereIntersection(const Ray& ray, const Vec3& center, float radius, float& tHit) {
@@ -31,7 +32,14 @@ std::string grayscale(int i) {
 }
 
 
-int main() {
+int main(int argc, char** argv) {
+    if(argc != 3) {
+        std::cout << "Invalid parameters" << std::endl;
+        exit(1);
+    }
+    W = std::stoi(argv[1]);
+    H = std::stoi(argv[2]);
+
     Vec3 camPos(0);
     Vec3 camForward(0, 0, -1);
     Vec3 camRight(1, 0, 0);
